@@ -1,0 +1,61 @@
+{% extends 'main/home.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/fc1e235b2e.js"></script>
+  <link rel="stylesheet" href="{% static 'assets2/style1.css' %}">
+  <title>Search Hotels</title>
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <div class="container">
+      <div class="form-data">
+        
+      
+
+        <div class="search-results">
+          <div class="logo">
+            <h3 style="padding-top: 5px; font-size: 20px;">Search Results</h3>
+          </div>
+
+          {% for property in properties %}
+            <div class="property-card" style="text-align: start; border: solid rgba(192, 192, 192, 0.514) 1px; padding: 10px; border-radius: 25px;">
+              <div class="property-image">
+                {% if property.image %}
+                  <img src="{{ property.image.url }}" alt="Property Picture" style="width: 100px; height: 100px;">
+                {% else %}
+                  <img src="{% static 'assets1/default.jpg' %}" alt="Default Picture" style="width: 100px; height: 100px;">
+                {% endif %}
+              </div>
+              <div class="property-info">
+                <h4 style="font-size: 15px; color: black;">{{ property.name|title }}</h4>
+                <p style="font-size: 14px;">Location: {{ property.location }}</p>
+                <p style="font-size: 14px;">{{ property.description|truncatewords:10 }}</p>
+                <a href="{% url 'property_detail' property.id %}" style="color: rgb(255, 255, 255);" class="property-link">View Details</a>
+              </div>
+            </div>
+          {% endfor %}
+
+          {% if not properties %}
+            <p>No hotels found matching your search.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
+</body>
+
+</html>
+{% endblock content %}

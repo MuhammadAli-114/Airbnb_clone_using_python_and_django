@@ -1,0 +1,93 @@
+{% extends 'main/home.html' %}
+
+{% block title %}Booking | Airbnb Clone{% endblock %}
+
+{% block content %}
+<style>
+    /* Container Styles */
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .container h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    /* Form Styles */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    form label {
+        font-weight: bold;
+        font-size: 16px;
+        color: #444;
+    }
+
+    form input, form select, form textarea {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+        border-color: #FF385C;
+    }
+
+    /* Button Styles */
+    button {
+        padding: 12px;
+        background-color: #FF385C;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #E03350;
+        transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+        }
+
+        button {
+            font-size: 14px;
+        }
+    }
+</style>
+    <div class="container">
+        <h2>Book {{ property.name }}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+    </div>
+{% endblock %}

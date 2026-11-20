@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Airbnb Clone{% endblock %}</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #222;
+            line-height: 1.5;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #FF385C;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #FF385C;
+        }
+        header nav {
+            display: flex;
+            gap: 25px;
+        }
+        header nav a {
+            font-size: 16px;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        header nav a:hover {
+            background-color: #FF385C;
+            color: white;
+        }
+
+       /* Search Bar */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.search-bar form {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar input:focus {
+    border-color: #FF385C;
+    box-shadow: 0 0 5px rgba(255, 56, 92, 0.5);
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar button:hover {
+    background-color: #E03350;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            padding: 18px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            gap: 18px;
+        }
+        .filter-bar a {
+            font-size: 16px;
+            padding: 12px 22px;
+            background-color: #FF385C;
+            color: white;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .filter-bar a:hover {
+            background-color: #E03350;
+            transform: scale(1.05);
+        }
+
+        /* Property Listings */
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        .property-card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+        }
+        .property-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .property-card h3,h6 {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .property-card h6 {
+            margin: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        .property-card p {
+            margin: 0 20px 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .property-card a {
+            display: block;
+            text-align: center;
+            margin: 15px 20px 20px;
+            padding: 12px;
+            background-color: #FF385C;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .property-card a:hover {
+            background-color: #E03350;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+        footer .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        footer .footer-links a {
+            color: #FF385C;
+            transition: color 0.3s ease;
+        }
+        footer .footer-links a:hover {
+            color: #E03350;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-bar input {
+                width: 75%;
+            }
+            header nav {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .filter-bar {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .properties {
+                grid-template-columns: 1fr;
+            }
+            .property-card img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1><a href="/">Airbnb</a></h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about-us">About Us</a>
+            <a href="/contact-us">Contact Us</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'bookings_list' %}">Bookings</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </nav>
+    </header>
+
+   <!-- Search Bar -->
+{% if request.path == '/' %}
+<div class="search-bar">
+    <form action="{% url 'property_search' %}" method="GET">
+        <input 
+            type="text" 
+            placeholder="Search for location or hotels" 
+            name="q" 
+            value="{{ request.GET.q }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+</div>
+{% endif %}
+
+    <!-- Main Content Area -->
+    <main>
+        {% block content %}
+        <div class="filter-bar">
+            <h1>All Available Property</h1>
+          </div>
+        <div class="properties">
+            {% for property in property %}
+                <div class="property-card">
+                    <img src="{{ property.image.url }}" alt="{{ property.name }}">
+                    <h3>{{ property.name }}</h3>
+                    <p><strong>Location:</strong> {{ property.location }}</p>
+                    <p>{{ property.description|truncatewords:20 }}</p>
+                    <a href="{% url 'property_detail' property.id %}">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Airbnb Clone | All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Careers</a>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+</body>
+</html>

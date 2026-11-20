@@ -1,0 +1,41 @@
+{% extends 'main/home.html' %}
+
+{% block title %}Apply Promo Code | Airbnb Clone{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+</style>
+    <div class="container">
+        <h2>Apply Promo Code</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Apply Code</button>
+        </form>
+    </div>
+{% endblock %}

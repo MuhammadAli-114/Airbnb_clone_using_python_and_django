@@ -1,0 +1,41 @@
+{% extends 'main/home.html' %}
+
+{% block title %}Payment Method | Airbnb Clone{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+    <div class="container">
+        <h2>Add Payment Method</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Add Payment Method</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "main/home.html" %}
+
+{% block title %}About Us | Airbnb Clone{% endblock %}
+
+{% block content %}
+<style>
+    .about-container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .about-container h2 {
+        color: #FF385C;
+        margin-bottom: 20px;
+    }
+
+    .about-container p {
+        line-height: 1.8;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .about-container img {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px 0;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="about-container">
+    <h2>About Us</h2>
+    <p>
+        Welcome to Airbnb Clone, your go-to platform for finding the perfect accommodation for your travels. 
+        Our mission is to connect travelers with hosts offering unique and comfortable spaces worldwide.
+    </p>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT2w_ALqqL9ti849HwQjyzbIhivUNKyvRM8Q&s" alt="About Us">
+    <p>
+        Whether you’re looking for a cozy apartment in the city, a serene beach house, or a countryside escape, 
+        we have something for everyone. We pride ourselves on offering a seamless experience for both guests and hosts.
+    </p>
+</div>
+{% endblock %}
